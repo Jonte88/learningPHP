@@ -18,7 +18,7 @@
 
 ###
 
-<p align="left">1. Login Systems: Explore the intricacies of creating secure and user-friendly login systems, understanding authentication methods, and implementing best practices.<br><br>2. Security: Delve into PHP security practices to safeguard web applications against common vulnerabilities. Learn about input validation, SQL injection prevention, and other security measures.<br><br>3. Cookies and Sessions: Gain a solid understanding of managing user state with cookies and sessions. Implement functionalities that enhance user experience while maintaining security.<br><br>4. Basic Variables and Fundamentals: Master the fundamentals of PHP variables, data types, and syntax. Build a strong foundation for efficient PHP programming.</p>
+<p align="left">1. Login Systems: Explore the intricacies of creating secure and user-friendly login systems, understanding authentication methods, and implementing best practices.<br><br>2. Security: Delve into PHP security practices to safeguard web applications against common vulnerabilities. Learn about input validation and other security measures.<br><br>3. Cookies and Sessions: Gain a solid understanding of managing user state with cookies and sessions. Implement functionalities that enhance user experience while maintaining security.<br><br>4. Basic Variables and Fundamentals: Master the fundamentals of PHP variables, data types, and syntax. Build a strong foundation for efficient PHP programming.</p>
 
 ###
 
@@ -50,7 +50,6 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40" alt="tailwindcss logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" height="40" alt="php logo"  />
-  <p>And Pocketbase</p>
 </div>
 
 ###
