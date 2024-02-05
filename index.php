@@ -11,7 +11,7 @@
             $_SESSION["username"] = $username;
             header("Location: /other/dashboard.php");
         } else {
-            echo "Incorrect Username or Password!";
+            echo "<div class='fixed	bottom-10 left-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-[450px]' role='alert'><p class='font-bold'>Incorrect Username or Password</p><p>Try with a diffrent Username or Password...</p></div>";
         }
     }
 ?>
