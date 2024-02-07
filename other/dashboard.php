@@ -16,7 +16,7 @@ if (isset($_POST["submitAPIinput"])) {
     // $data_array =  array("data" => "some_record_data"); 
     // $make_call = callAPI('POST', 'https://yourapi.com/post_url/', json_encode($data_array)); 
     // $response = json_decode($make_call, true);
-    $brokenUrl = "https://api.nationalize.io?name=" . $submitNameData;;
+    $brokenUrl = "https://api.genderize.io?name=" . $submitNameData;;
     $url = $brokenUrl; 
 
     $curl = curl_init($url);
@@ -36,8 +36,7 @@ if (isset($_POST["submitAPIinput"])) {
 
     curl_close($curl);
 
-    echo $response;
-    echo "Done!";
+    print_r($response);
 }
         //https://api.nationalize.io?name=zimon
 ?>
