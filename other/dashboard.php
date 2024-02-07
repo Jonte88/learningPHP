@@ -11,17 +11,34 @@ if (isset($_SESSION["username"])) {
 
 if (isset($_POST["submitAPIinput"])) {
 
-	$url = "https://api.nationalize.io?name=zimon";
-	
-	$client = curl_init($url);
-	curl_setopt($client,CURLOPT_RETURNTRANSFER,true);
-	$response = curl_exec($client);
-	
-	$result = json_decode($response);
-	
-	print_r($result);
-    echo $result;
+    $submitNameData = $_POST["nameAPIinput"];
+
+    // $data_array =  array("data" => "some_record_data"); 
+    // $make_call = callAPI('POST', 'https://yourapi.com/post_url/', json_encode($data_array)); 
+    // $response = json_decode($make_call, true);
+    $brokenUrl = "https://api.nationalize.io?name=" . $submitNameData;;
+    $url = $brokenUrl; 
+
+    $curl = curl_init($url);
+
+    $certificate_location = "/usr/local/openssl-0.9.8/certs/cacert.pem";
+
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
+
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($curl);
+
+    if (!$response) {
+        die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
     }
+
+    curl_close($curl);
+
+    echo $response;
+    echo "Done!";
+}
         //https://api.nationalize.io?name=zimon
 ?>
 <!DOCTYPE html>
