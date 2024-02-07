@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+if (isset($_SESSION["username"])) {
+    echo "<h1>Welcome " . $_SESSION["username"] . "</h1>";
+    echo "<a href='logout.php'>Logout</a>";
+} else {
+    echo "<h1>Welcome Guest</h1>";
+    echo "<a href='/index.php'><- Go back</a>";
+}
+
+if (isset($_POST["submitAPIinput"])) {
+
+	$url = "https://api.nationalize.io?name=zimon";
+	
+	$client = curl_init($url);
+	curl_setopt($client,CURLOPT_RETURNTRANSFER,true);
+	$response = curl_exec($client);
+	
+	$result = json_decode($response);
+	
+	print_r($result);
+    echo $result;
+    }
+        //https://api.nationalize.io?name=zimon
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,29 +32,9 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Welcome Guest</h1>
-    <a href="/index.php"><- Go back</a>
-    
-    <input type="text" id="nameAPIinput">
-    <button onclick="callAPI()">Call API</button>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        function callAPI() {
-            var nameAPIinput = document.getElementById('nameAPIinput').value;
-            var url = 'https://api.nationalize.io?name=' + encodeURIComponent(nameAPIinput);
-
-            axios.get(url)
-                .then(function (response) {
-                    // Handle success
-                    console.log(response.data);
-                    // You can process the response data here
-                })
-                .catch(function (error) {
-                    // Handle error
-                    console.error('Error fetching data from the API:', error);
-                });
-        }
-    </script>
+    <form method="POST">
+        <input type="text" name="nameAPIinput" id="nameAPIinput">
+        <input type="submit" value="Call API" name="submitAPIinput">
+    </form>
 </body>
 </html>
