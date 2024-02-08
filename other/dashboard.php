@@ -2,8 +2,8 @@
 session_start();
 
 if (isset($_SESSION["username"])) {
-    echo "<h1>Welcome " . $_SESSION["username"] . "</h1>";
-    echo "<a href='logout.php'>Logout</a>";
+    echo "<h1 class='font-bold text-7xl text-center mt-[5%]'>Welcome " . $_SESSION["username"] . "</h1>";
+    echo "<a href='logout.php'>Sign out</a>";
 } else {
     echo "<h1>Welcome Guest</h1>";
     echo "<a href='/index.php'><- Go back</a>";
@@ -29,14 +29,6 @@ if (isset($_POST["submitAPIinput"])) {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curl);
-
-    if (!$response) {
-        die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
-    }
-
-    curl_close($curl);
-
-    print_r($response);
 }
         //https://api.nationalize.io?name=zimon
 ?>
@@ -46,11 +38,35 @@ if (isset($_POST["submitAPIinput"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <form method="POST">
-        <input type="text" name="nameAPIinput" id="nameAPIinput">
-        <input type="submit" value="Call API" name="submitAPIinput">
-    </form>
+    <div class="flex justify-center items-center h-[40%]">
+        <div class="w-[80%]">
+            <form method="POST" class="w-[40%] m-auto">
+                <input type="text" name="nameAPIinput" id="nameAPIinput" class="border-2 border-black rounded-xl w-[80%] p-[1%]" placeholder="Write a name..." required>
+                <input type="submit" value="Call API" name="submitAPIinput" class="border-2 border-black rounded-xl w-[18%] p-[1%] px-[5%] hover:bg-gray-400">
+            </form>
+            <div class="m-auto text-center">
+                <?php
+                    if (isset($_POST["submitAPIinput"])) {
+                        if (!$response) {
+                            die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
+                        } else {
+                            curl_close($curl);
+                            $responseData = json_decode($response, true);
+                            if ($responseData['error']) {
+                                echo $responseData['error'];
+                            } else {
+                                echo "<p>The person with the name " . ucfirst($responseData['name']) . " is a " . $responseData['gender'] . " with a probability of " . round( $responseData['probability'] * 100 ), "%</p>";
+                            }
+                        }
+                    } else {
+                        echo "<p>Enter a name above to continue!</p>";
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
