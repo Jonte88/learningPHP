@@ -55,7 +55,7 @@ if (isset($_POST["submitAPIinput"])) {
                         } else {
                             curl_close($curl);
                             $responseData = json_decode($response, true);
-                            if ($responseData['error']) {
+                            if (isset($responseData['error'])) {
                                 echo $responseData['error'];
                             } else {
                                 echo "<p>The person with the name " . ucfirst($responseData['name']) . " is a " . $responseData['gender'] . " with a probability of " . round( $responseData['probability'] * 100 ), "%</p>";
